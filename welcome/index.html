@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON Formatter is installed</title>
+<style>
+  :root {
+    --bg: #ffffff; --bg2: #f4f5f7; --fg: #24292f; --muted: #68717b;
+    --line: #d8dde3; --accent: #1f7a5c; --on-accent: #ffffff;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16191d; --bg2: #1e2227; --fg: #dbe0e5; --muted: #848d97;
+      --line: #30363d; --accent: #63c9a4; --on-accent: #16191d;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 48px 24px 80px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--accent); font-weight: 600;
+    border: 1px solid var(--accent); border-radius: 999px; padding: 6px 14px;
+  }
+  .logo {
+    display: inline-grid; place-items: center; width: 44px; height: 44px;
+    border-radius: 11px; background: var(--accent); color: var(--on-accent);
+    font-family: ui-monospace, Menlo, monospace; font-size: 17px; font-weight: 600;
+    margin-right: 14px; vertical-align: middle;
+  }
+  h1 { font-size: 34px; line-height: 1.2; margin: 22px 0 10px; }
+  .tagline { color: var(--muted); font-size: 18px; margin: 0 0 34px; max-width: 640px; }
+  .cta {
+    display: inline-block; background: var(--accent); color: var(--on-accent);
+    font-weight: 600; font-size: 17px; text-decoration: none;
+    padding: 13px 26px; border-radius: 10px;
+  }
+  .cta:hover { filter: brightness(1.08); }
+  .cta-hint { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  .step { margin-top: 64px; }
+  .step-n {
+    font-family: ui-monospace, Menlo, monospace; font-size: 13px; font-weight: 600;
+    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  h2 { font-size: 24px; margin: 8px 0 10px; }
+  .step p { margin: 0 0 18px; max-width: 660px; }
+  kbd {
+    font-family: ui-monospace, Menlo, monospace; font-size: 13px;
+    background: var(--bg2); border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 6px; padding: 2px 7px;
+  }
+  .shot {
+    width: 100%; height: auto; border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.08); display: block;
+  }
+  .shot.narrow { max-width: 340px; }
+  .cols { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+  .cols > div { flex: 1 1 300px; }
+  .note {
+    margin-top: 64px; background: var(--bg2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px 24px;
+  }
+  .note h3 { margin: 0 0 8px; font-size: 17px; }
+  .note p { margin: 0; color: var(--muted); font-size: 15px; }
+  .note code {
+    font-family: ui-monospace, Menlo, monospace; font-size: 13px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px;
+  }
+  footer { margin-top: 56px; color: var(--muted); font-size: 13.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badge">✓&nbsp; JSON Formatter is installed</div>
+
+  <h1><span class="logo">{&hairsp;}</span>You’re all set</h1>
+  <p class="tagline">From now on, any raw JSON you open — an API response, a
+  <code>.json</code> file — turns into a collapsible, searchable tree.
+  Automatically. Nothing to click, nothing to configure.</p>
+
+  <a class="cta" href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener">Open a sample JSON →</a>
+  <div class="cta-hint">A public test API opens in a new tab — you’ll see the formatted tree right away.</div>
+
+  <div class="step">
+    <div class="step-n">Step 1</div>
+    <h2>It just works</h2>
+    <p>Open any JSON page and you get syntax highlighting, collapsing, indent
+    guides and item counters. Numbers, key order and every literal are shown
+    <strong>byte-for-byte from the source</strong> — big 64-bit IDs like
+    <code>9007199254740993</code> are never rounded. Hit <strong>Raw</strong>
+    in the toolbar any time to see the untouched original.</p>
+    <img class="shot" src="img/step-tree.png" alt="A JSON response rendered as a highlighted collapsible tree with the JSON Formatter toolbar on top">
+  </div>
+
+  <div class="step">
+    <div class="step-n">Step 2</div>
+    <h2>Search, filter, copy</h2>
+    <p>Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> (<kbd>⌘⇧F</kbd> on Mac)
+    to search keys and values — matches are highlighted and the path to each one
+    unfolds automatically; <strong>Filter</strong> hides everything else. Hover
+    any row to <strong>copy its value</strong> (a valid JSON fragment) or
+    <strong>copy its path</strong> (<code>releases[0].downloads</code>). The
+    Copy button in the toolbar copies the whole document, formatted or minified.</p>
+    <img class="shot" src="img/step-search.png" alt="Search panel with highlighted matches, match counter and Filter button">
+  </div>
+
+  <div class="step">
+    <div class="step-n">Step 3</div>
+    <h2>Make it yours</h2>
+    <div class="cols">
+      <div>
+        <p>Click the <strong>extension icon</strong> in the Chrome toolbar to open
+        settings: light / dark / auto theme, indent width, default expand depth,
+        path notation, clickable links — and domains where you’d rather keep
+        formatting off. Changes apply to open tabs instantly.</p>
+        <p>Want it on local files too? Enable
+        <strong>“Allow access to file URLs”</strong> for JSON Formatter on
+        <code>chrome://extensions</code> — the popup reminds you if it’s off.</p>
+      </div>
+      <div><img class="shot narrow" src="img/step-popup.png" alt="JSON Formatter settings popup: theme, indent, default depth, path style, excluded domains"></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3>Private by design</h3>
+    <p>No ads, no tracking, no analytics — ever. The extension makes zero network
+    requests: your JSON is processed locally in the tab and never leaves it. The
+    only permission it uses is <code>storage</code>, to remember your settings.</p>
+  </div>
+
+  <footer>JSON Formatter — Viewer &amp; Beautifier · You can close this tab now, everything is ready.</footer>
+
+</div>
+</body>
+</html>
