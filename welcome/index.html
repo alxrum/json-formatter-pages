@@ -32,7 +32,7 @@
     display: inline-grid; place-items: center; width: 44px; height: 44px;
     border-radius: 11px; background: var(--accent); color: var(--on-accent);
     font-family: ui-monospace, Menlo, monospace; font-size: 17px; font-weight: 600;
-    margin-right: 14px; vertical-align: middle;
+    margin-inline-end: 14px; vertical-align: middle;
   }
   h1 { font-size: 34px; line-height: 1.2; margin: 22px 0 10px; }
   .tagline { color: var(--muted); font-size: 18px; margin: 0 0 34px; max-width: 640px; }
@@ -78,20 +78,20 @@
 <body>
 <div class="wrap">
 
-  <div class="badge">✓&nbsp; JSON Formatter is installed</div>
+  <div class="badge">✓&nbsp; <span data-i18n="badge">JSON Formatter is installed</span></div>
 
-  <h1><span class="logo">{&hairsp;}</span>You’re all set</h1>
-  <p class="tagline">From now on, any raw JSON you open — an API response, a
+  <h1><span class="logo">{&hairsp;}</span><span data-i18n="title">You’re all set</span></h1>
+  <p class="tagline" data-i18n="tagline">From now on, any raw JSON you open — an API response, a
   <code>.json</code> file — turns into a collapsible, searchable tree.
   Automatically. Nothing to click, nothing to configure.</p>
 
-  <a class="cta" href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener">Open a sample JSON →</a>
-  <div class="cta-hint">A public test API opens in a new tab — you’ll see the formatted tree right away.</div>
+  <a class="cta" href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener"><span data-i18n="cta">Open a sample JSON →</span></a>
+  <div class="cta-hint" data-i18n="ctaHint">A public test API opens in a new tab — you’ll see the formatted tree right away.</div>
 
   <div class="step">
-    <div class="step-n">Step 1</div>
-    <h2>It just works</h2>
-    <p>Open any JSON page and you get syntax highlighting, collapsing, indent
+    <div class="step-n"><span data-i18n="step">Step</span> 1</div>
+    <h2 data-i18n="s1h">It just works</h2>
+    <p data-i18n="s1p">Open any JSON page and you get syntax highlighting, collapsing, indent
     guides and item counters. Numbers, key order and every literal are shown
     <strong>byte-for-byte from the source</strong> — big 64-bit IDs like
     <code>9007199254740993</code> are never rounded. Hit <strong>Raw</strong>
@@ -100,9 +100,9 @@
   </div>
 
   <div class="step">
-    <div class="step-n">Step 2</div>
-    <h2>Search, filter, copy</h2>
-    <p>Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> (<kbd>⌘⇧F</kbd> on Mac)
+    <div class="step-n"><span data-i18n="step">Step</span> 2</div>
+    <h2 data-i18n="s2h">Search, filter, copy</h2>
+    <p data-i18n="s2p">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> (<kbd>⌘⇧F</kbd> on Mac)
     to search keys and values — matches are highlighted and the path to each one
     unfolds automatically; <strong>Filter</strong> hides everything else. Hover
     any row to <strong>copy its value</strong> (a valid JSON fragment) or
@@ -112,15 +112,15 @@
   </div>
 
   <div class="step">
-    <div class="step-n">Step 3</div>
-    <h2>Make it yours</h2>
+    <div class="step-n"><span data-i18n="step">Step</span> 3</div>
+    <h2 data-i18n="s3h">Make it yours</h2>
     <div class="cols">
       <div>
-        <p>Click the <strong>extension icon</strong> in the Chrome toolbar to open
+        <p data-i18n="s3p1">Click the <strong>extension icon</strong> in the Chrome toolbar to open
         settings: light / dark / auto theme, indent width, default expand depth,
         path notation, clickable links — and domains where you’d rather keep
         formatting off. Changes apply to open tabs instantly.</p>
-        <p>Want it on local files too? Enable
+        <p data-i18n="s3p2">Want it on local files too? Enable
         <strong>“Allow access to file URLs”</strong> for JSON Formatter on
         <code>chrome://extensions</code> — the popup reminds you if it’s off.</p>
       </div>
@@ -129,14 +129,46 @@
   </div>
 
   <div class="note">
-    <h3>Private by design</h3>
-    <p>No ads, no tracking, no analytics — ever. The extension makes zero network
+    <h3 data-i18n="noteH">Private by design</h3>
+    <p data-i18n="noteP">No ads, no tracking, no analytics — ever. The extension makes zero network
     requests: your JSON is processed locally in the tab and never leaves it. The
     only permission it uses is <code>storage</code>, to remember your settings.</p>
   </div>
 
-  <footer>JSON Formatter — Viewer &amp; Beautifier · You can close this tab now, everything is ready.</footer>
+  <footer data-i18n="footer">JSON Formatter — Viewer &amp; Beautifier · You can close this tab now, everything is ready.</footer>
 
 </div>
+<script src="i18n.js"></script>
+<script>
+  // Язык: ?lang= (для проверки) → языки браузера → en (в разметке).
+  // Словарь I18N — наш собственный статический текст (i18n.js рядом),
+  // пользовательских данных здесь нет.
+  (function () {
+    const norm = (l) => l.toLowerCase().replace("-", "_");
+    const pick = () => {
+      const q = new URLSearchParams(location.search).get("lang");
+      const cand = [q, ...(navigator.languages || [navigator.language])].filter(Boolean);
+      for (const c of cand.map(norm)) {
+        if (I18N[c]) return c;
+        const base = c.split("_")[0];
+        if (base === "zh") return "zh_cn";
+        if (base === "pt") return c === "pt_pt" ? "pt_pt" : "pt_br";
+        if (base === "es") return c === "es" || c === "es_es" ? "es" : "es_419";
+        if (I18N[base]) return base;
+      }
+      return null;
+    };
+    const lang = pick();
+    if (!lang) return;
+    const t = I18N[lang];
+    document.documentElement.lang = lang.replace("_", "-");
+    if (lang === "ar" || lang === "he") document.documentElement.dir = "rtl";
+    for (const el of document.querySelectorAll("[data-i18n]")) {
+      const v = t[el.dataset.i18n];
+      if (v) el.innerHTML = v; // только собственные строки словаря
+    }
+    document.title = t.pageTitle || document.title;
+  })();
+</script>
 </body>
 </html>
