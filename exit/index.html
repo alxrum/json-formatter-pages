@@ -131,7 +131,7 @@
   form.addEventListener('change', () => {
     send.disabled = !form.querySelector('input[name="reason"]:checked');
   });
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const reason = form.querySelector('input[name="reason"]:checked')?.value;
     if (!reason) return;
@@ -142,10 +142,10 @@
         details: document.getElementById('details').value.trim().slice(0, 2000),
         lang: document.documentElement.lang || 'en',
       });
-      try {
-        // no-cors: ответ не читается, строка в таблицу дописывается Apps Script-ом
-        await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body });
-      } catch (_) { /* оффлайн — не мешаем закрыть страницу */ }
+      // Без await: у Apps Script холодный старт до нескольких секунд, ждать
+      // нечего (no-cors — ответ всё равно не читается). keepalive доставит
+      // запрос, даже если пользователь сразу закроет вкладку.
+      fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true, body }).catch(() => {});
     }
     document.getElementById('survey').classList.add('hidden');
     document.getElementById('thanks').classList.add('shown');
