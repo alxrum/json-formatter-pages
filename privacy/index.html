@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — JSON Formatter</title>
+<style>
+  :root {
+    --bg: #ffffff; --bg2: #f4f5f7; --fg: #24292f; --muted: #68717b;
+    --line: #d8dde3; --accent: #1f7a5c;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16191d; --bg2: #1e2227; --fg: #dbe0e5; --muted: #848d97;
+      --line: #30363d; --accent: #63c9a4;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  header img { width: 56px; height: 56px; border-radius: 14px; }
+  h1 { font-size: 28px; margin: 0; }
+  .updated { color: var(--muted); font-size: 14px; margin: 6px 0 34px; }
+  h2 { font-size: 20px; margin: 34px 0 10px; }
+  p, li { margin: 0 0 12px; }
+  ul { padding-left: 22px; margin: 0 0 12px; }
+  code {
+    font-family: ui-monospace, Menlo, monospace; font-size: 14px;
+    background: var(--bg2); border: 1px solid var(--line);
+    border-radius: 5px; padding: 1px 6px;
+  }
+  .lead {
+    background: var(--bg2); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 16px 20px; font-size: 17px; margin-bottom: 30px;
+  }
+  a { color: var(--accent); }
+  footer { margin-top: 44px; color: var(--muted); font-size: 13.5px; border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="data:image/png;base64,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" alt="JSON Formatter icon">
+    <h1>Privacy Policy — JSON Formatter&nbsp;— Viewer &amp; Beautifier</h1>
+  </header>
+  <p class="updated">Last updated: September 10, 2026</p>
+
+  <div class="lead"><strong>Short version: the extension collects nothing.</strong>
+  No analytics, no tracking, no ads, no accounts. Your JSON is processed locally
+  in the browser tab and never leaves it.</div>
+
+  <h2>What the extension does</h2>
+  <p>JSON Formatter detects pages that contain a raw JSON document and renders
+  them as a collapsible tree, entirely inside the tab. All parsing, searching,
+  formatting and copying happens locally on your device.</p>
+
+  <h2>Data collection</h2>
+  <ul>
+    <li>The extension does <strong>not</strong> collect, store, transmit or sell any personal
+    data, browsing history, or page content.</li>
+    <li>The content of the JSON documents you view <strong>never leaves the tab</strong>.
+    It is not written to storage and not sent anywhere.</li>
+    <li>The extension makes <strong>zero network requests</strong>. The only resources it
+    loads are its own files bundled with the extension.</li>
+  </ul>
+
+  <h2>Permissions</h2>
+  <ul>
+    <li><code>storage</code> — the only permission the extension requests. It stores your
+    interface preferences (theme, indent width, default expand depth, path
+    notation, clickable links, excluded domains). If you are signed into Chrome,
+    Chrome itself may sync these preferences across your devices via
+    <code>chrome.storage.sync</code> — this is standard Chrome functionality under
+    Google’s privacy policy.</li>
+    <li>Access to page content (<code>&lt;all_urls&gt;</code> content script) is required because
+    JSON can be served from any domain. The script only inspects the page type
+    (about 1&nbsp;ms) and immediately exits on pages that are not raw JSON,
+    leaving no trace.</li>
+  </ul>
+
+  <h2>Welcome page and uninstall survey</h2>
+  <ul>
+    <li>After installation the extension opens a one-time welcome page, and after
+    uninstallation Chrome opens a short farewell survey. Both are ordinary web
+    pages hosted on GitHub Pages; standard web-server access logs of the hosting
+    provider may apply to visiting them, as with any website.</li>
+    <li>The uninstall survey is <strong>anonymous and voluntary</strong>. If you choose to
+    submit it, only your selected reason, the optional free-text comment and the
+    page language are stored (in a private Google Sheet via Google Apps Script).
+    No identifiers, no IP-address processing on our side, no cookies.</li>
+  </ul>
+
+  <h2>Changes to this policy</h2>
+  <p>If the policy ever changes, the updated version will be published at the
+  same address, with the “Last updated” date above revised. The core promise —
+  no data collection in the extension — is the product’s positioning and is not
+  going to change.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <strong>[contact e-mail — заполняет заказчик]</strong></p>
+
+  <footer>JSON Formatter — Viewer &amp; Beautifier · This document also serves as
+  the privacy disclosure for the Chrome Web Store “Data usage” form: no data is
+  collected or transferred.</footer>
+
+</div>
+</body>
+</html>
